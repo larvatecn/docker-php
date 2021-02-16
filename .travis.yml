@@ -1,0 +1,38 @@
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+env:
+  - PHP_VERSION=7.4
+#  - PHP_VERSION=8.0
+before_install:
+  - export DOCKER_COMPOSE_VERSION=1.28.2
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_script:
+  - env | sort
+  - cd "PHP_VERSION"
+  - image="larvatech/php:${PHP_VERSION}"
+
+script:
+  - travis_retry docker build -t "$image" .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login --username="${DOCKER_REGISTRY_USER}" --password="${DOCKER_REGISTRY_PASSWORD}";
+      docker push $image;
+      docker tag $image larvatech/php:${PHP_VERSION};
+      docker push larvatech/php:${PHP_VERSION};
+      if [[ "${PHP_VERSION}" == "8.0" ]]; then
+        docker tag $image larvatech/php:latest;
+        docker push larvatech/php::latest;
+      fi;
+    fi;
+
+# vim:set et ts=2 sw=2:
