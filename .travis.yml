@@ -27,11 +27,10 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login --username="${DOCKER_REGISTRY_USER}" --password="${DOCKER_REGISTRY_PASSWORD}";
       docker push $image;
-      docker tag $image larvatech/php:${PHP_VERSION};
       docker push larvatech/php:${PHP_VERSION};
       if [[ "${PHP_VERSION}" == "8.0" ]]; then
         docker tag $image larvatech/php:latest;
-        docker push larvatech/php::latest;
+        docker push larvatech/php:latest;
       fi;
     fi;
 
