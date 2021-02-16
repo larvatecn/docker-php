@@ -7,7 +7,7 @@ services:
 
 env:
   - PHP_VERSION=7.4
-#  - PHP_VERSION=8.0
+  - PHP_VERSION=8.0
 before_install:
   - export DOCKER_COMPOSE_VERSION=1.28.2
   - sudo rm /usr/local/bin/docker-compose

@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: cd "7.4" && docker build . --file Dockerfile --tag larvatech/php:7.4
+    - name: Build PHP 7.4 Docker image
+      run: cd "7.4" && docker build --tag larvatech/php:7.4
+    - name: Build PHP 8.0 Docker image
+      run: cd "8.0" && docker build --tag larvatech/php:8.0
