@@ -17,7 +17,7 @@ before_install:
 
 before_script:
   - env | sort
-  - cd "PHP_VERSION"
+  - cd "$PHP_VERSION"
   - image="larvatech/php:${PHP_VERSION}"
 
 script:
