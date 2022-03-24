@@ -8,6 +8,24 @@ on:
 
 jobs:
 
+  php74:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: cd 7.4 && docker build . --file Dockerfile --tag php74:$(date +%s)
+
+  php80:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: cd 8.0 && docker build . --file Dockerfile --tag php80:$(date +%s)
+
   php81:
 
     runs-on: ubuntu-latest
