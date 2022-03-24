@@ -24,7 +24,7 @@ RUN apt-get update \
        php7.4-imap php7.4-mysql php7.4-mbstring \
        php7.4-xml php7.4-zip php7.4-bcmath php7.4-soap \
        php7.4-intl php7.4-readline php7.4-pcov \
-       php7.4-msgpack php7.4-igbinary php7.4-redis php8.1-swoole \
+       php7.4-msgpack php7.4-igbinary php7.4-redis php7.4-swoole \
     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && apt-get install -y mysql-client \
     && apt-get install -y postgresql-client \
