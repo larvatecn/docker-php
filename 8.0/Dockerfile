@@ -36,4 +36,4 @@ RUN update-alternatives --set php /usr/bin/php8.0
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
-COPY php.ini /etc/php/7.4/cli/conf.d/99-larva.ini
+COPY php.ini /etc/php/8.0/cli/conf.d/99-larva.ini
