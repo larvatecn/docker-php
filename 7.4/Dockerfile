@@ -37,11 +37,4 @@ RUN update-alternatives --set php /usr/bin/php7.4
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php7.4
 
-COPY start-container /usr/local/bin/start-container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/7.4/cli/conf.d/99-larva.ini
-RUN chmod +x /usr/local/bin/start-container
-
-EXPOSE 8000
-
-ENTRYPOINT ["start-container"]
