@@ -58,9 +58,10 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./7.4
+          file: 7.4/Dockerfile
+          context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7.4
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7.4
 
       - name: Sign the published Docker image
         env:
@@ -104,7 +105,8 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./8.0
+          file: 8.0/Dockerfile
+          context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.0
 
@@ -152,7 +154,8 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./8.1
+          file: 8.1/Dockerfile
+          context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.1
 
