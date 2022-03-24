@@ -45,7 +45,6 @@ jobs:
         with:
           cosign-release: 'v1.4.0'
 
-
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
@@ -71,13 +70,12 @@ jobs:
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
-        id: build-and-push
+        id: build-and-push-74
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ./7.4
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7.4
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
@@ -90,4 +88,51 @@ jobs:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
+        run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push-74.outputs.digest }}
+
+        # Build and push Docker image with Buildx (don't push on PR)
+        # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        id: build-and-push-80
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+            context: ./8.0
+            push: ${{ github.event_name != 'pull_request' }}
+            tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.0
+
+        # Sign the resulting Docker image digest except on PRs.
+        # This will only write to the public Rekor transparency log when the Docker
+        # repository is public to avoid leaking data.  If you would like to publish
+        # transparency data even for private images, pass --force to cosign below.
+        # https://github.com/sigstore/cosign
+      - name: Sign the published Docker image
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+            COSIGN_EXPERIMENTAL: "true"
+          # This step uses the identity token to provision an ephemeral certificate
+          # against the sigstore community Fulcio instance.
+        run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push-80.outputs.digest }}
+
+
+          # Build and push Docker image with Buildx (don't push on PR)
+          # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        id: build-and-push-81
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+            context: ./8.1
+            push: ${{ github.event_name != 'pull_request' }}
+            tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.0
+
+          # Sign the resulting Docker image digest except on PRs.
+          # This will only write to the public Rekor transparency log when the Docker
+          # repository is public to avoid leaking data.  If you would like to publish
+          # transparency data even for private images, pass --force to cosign below.
+          # https://github.com/sigstore/cosign
+      - name: Sign the published Docker image
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+            COSIGN_EXPERIMENTAL: "true"
+            # This step uses the identity token to provision an ephemeral certificate
+            # against the sigstore community Fulcio instance.
+        run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push-81.outputs.digest }}
