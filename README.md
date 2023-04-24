@@ -30,3 +30,10 @@ COPY . /app
 WORKDIR /app
 CMD [ "php", "./your-script.php" ]
 ```
+
+```bash
+FROM FROM ghcr.io/larvatecn/php:8.2
+COPY . /app
+WORKDIR /app
+CMD [ "php", "./your-script.php" ]
+```
