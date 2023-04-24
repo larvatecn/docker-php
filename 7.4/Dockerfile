@@ -29,8 +29,6 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN update-alternatives --set php /usr/bin/php7.4
-
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php7.4
 
 COPY php.ini /etc/php/7.4/cli/conf.d/99_overrides.ini
