@@ -3,7 +3,7 @@
 [![Docker Image CI](https://github.com/larvatecn/docker-php/actions/workflows/docker-image.yml/badge.svg)](https://github.com/larvatecn/docker-php/actions/workflows/docker-image.yml)
 [![Docker Release](https://github.com/larvatecn/docker-php/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/larvatecn/docker-php/actions/workflows/docker-publish.yml)
 
-基础PHP镜像，包含 PHP7.4、PHP8.0、PHP8.1。
+基础PHP镜像，包含 PHP7.4、PHP8.0、PHP8.1、PHP8.2。
 
 ## 使用
 
