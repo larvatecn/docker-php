@@ -1,0 +1,54 @@
+name: Docker Image CI
+
+on:
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
+
+jobs:
+
+    php74:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Build the Docker image
+                run: cd 7.4 && docker build . --file Dockerfile --tag php74:$(date +%s)
+
+    php80:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Build the Docker image
+                run: cd 8.0 && docker build . --file Dockerfile --tag php80:$(date +%s)
+
+    php81:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Build the Docker image
+                run: cd 8.1 && docker build . --file Dockerfile --tag php81:$(date +%s)
+
+    php82:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Build the Docker image
+                run: cd 8.2 && docker build . --file Dockerfile --tag php82:$(date +%s)
+
+    php83:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Build the Docker image
+                run: cd 8.3 && docker build . --file Dockerfile --tag php83:$(date +%s)

@@ -1,0 +1,227 @@
+name: Docker Release
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+    schedule:
+        -   cron: '36 18 * * *'
+    push:
+        branches: [ master ]
+        tags:
+            - "*"
+    pull_request:
+        branches: [ master ]
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: larvatecn/php
+
+jobs:
+
+    build74:
+
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+            id-token: write
+
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v3
+
+            -   name: Install cosign
+                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                with:
+                    cosign-release: 'v1.4.0'
+
+            -   name: Setup Docker buildx
+                uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1
+
+            -   name: Log into registry ${{ env.REGISTRY }}
+                uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+                with:
+                    registry: ${{ env.REGISTRY }}
+                    username: ${{ github.actor }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Extract Docker metadata
+                id: meta
+                uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+                with:
+                    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+            -   name: Build and push Docker image
+                id: build-and-push
+                uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+                with:
+                    context: "{{defaultContext}}:7.4"
+                    push: true
+                    tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7.4
+
+    build80:
+
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+            id-token: write
+
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v3
+
+            -   name: Install cosign
+                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                with:
+                    cosign-release: 'v1.4.0'
+
+            -   name: Setup Docker buildx
+                uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1
+
+            -   name: Log into registry ${{ env.REGISTRY }}
+                uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+                with:
+                    registry: ${{ env.REGISTRY }}
+                    username: ${{ github.actor }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Extract Docker metadata
+                id: meta
+                uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+                with:
+                    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+            -   name: Build and push Docker image
+                id: build-and-push
+                uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+                with:
+                    context: "{{defaultContext}}:8.0"
+                    push: ${{ github.event_name != 'pull_request' }}
+                    tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.0
+
+    build81:
+
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+            id-token: write
+
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v3
+
+            -   name: Install cosign
+                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                with:
+                    cosign-release: 'v1.4.0'
+
+            -   name: Setup Docker buildx
+                uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1
+
+            -   name: Log into registry ${{ env.REGISTRY }}
+                uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+                with:
+                    registry: ${{ env.REGISTRY }}
+                    username: ${{ github.actor }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Extract Docker metadata
+                id: meta
+                uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+                with:
+                    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+            -   name: Build and push Docker image
+                id: build-and-push
+                uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+                with:
+                    context: "{{defaultContext}}:8.1"
+                    push: ${{ github.event_name != 'pull_request' }}
+                    tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.1
+
+    build82:
+
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+            id-token: write
+
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v3
+
+            -   name: Install cosign
+                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                with:
+                    cosign-release: 'v1.4.0'
+
+            -   name: Setup Docker buildx
+                uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1
+
+            -   name: Log into registry ${{ env.REGISTRY }}
+                uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+                with:
+                    registry: ${{ env.REGISTRY }}
+                    username: ${{ github.actor }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Extract Docker metadata
+                id: meta
+                uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+                with:
+                    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+            -   name: Build and push Docker image
+                id: build-and-push
+                uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+                with:
+                    context: "{{defaultContext}}:8.2"
+                    push: ${{ github.event_name != 'pull_request' }}
+                    tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.2
+
+    build83:
+
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+            id-token: write
+
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v3
+
+            -   name: Install cosign
+                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                with:
+                    cosign-release: 'v1.4.0'
+
+            -   name: Setup Docker buildx
+                uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1
+
+            -   name: Log into registry ${{ env.REGISTRY }}
+                uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+                with:
+                    registry: ${{ env.REGISTRY }}
+                    username: ${{ github.actor }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Extract Docker metadata
+                id: meta
+                uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+                with:
+                    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+            -   name: Build and push Docker image
+                id: build-and-push
+                uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+                with:
+                    context: "{{defaultContext}}:8.3"
+                    push: ${{ github.event_name != 'pull_request' }}
+                    tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.3
