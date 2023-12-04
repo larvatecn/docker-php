@@ -34,7 +34,7 @@ jobs:
                 uses: actions/checkout@v4
 
             -   name: Install cosign
-                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8
                 with:
                     cosign-release: 'v1.4.0'
 
@@ -75,7 +75,7 @@ jobs:
                 uses: actions/checkout@v4
 
             -   name: Install cosign
-                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8
                 with:
                     cosign-release: 'v1.4.0'
 
@@ -116,7 +116,7 @@ jobs:
                 uses: actions/checkout@v4
 
             -   name: Install cosign
-                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8
                 with:
                     cosign-release: 'v1.4.0'
 
@@ -157,7 +157,7 @@ jobs:
                 uses: actions/checkout@v4
 
             -   name: Install cosign
-                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8
                 with:
                     cosign-release: 'v1.4.0'
 
@@ -198,7 +198,7 @@ jobs:
                 uses: actions/checkout@v4
 
             -   name: Install cosign
-                uses: sigstore/cosign-installer@a5d81fb6bdbcbb3d239e864d6552820420254494
+                uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8
                 with:
                     cosign-release: 'v1.4.0'
 
