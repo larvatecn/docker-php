@@ -17,7 +17,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y php8.0-cli php8.0-common php8.0-amqp php8.0-bcmath php8.0-bz2 php8.0-curl php8.0-gd php8.0-gmp \
        php8.0-igbinary php8.0-imagick php8.0-intl php8.0-mbstring php8.0-mcrypt php8.0-memcached php8.0-mongodb php8.0-msgpack \
-       php8.0-mysql php8.0-psr php8.0-readline php8.0-redis php8.0-soap php8.0-sqlite3 php8.0-ssh2 php8.0-swoole php8.0-tidy \
+       php8.0-mysql php8.0-readline php8.0-redis php8.0-soap php8.0-sqlite3 php8.0-ssh2 php8.0-swoole php8.0-tidy \
        php8.0-xml php8.0-xmlrpc php8.0-xsl php8.0-yaml php8.0-zip php8.0-opcache php8.0-protobuf \
        mysql-client \
     && curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
