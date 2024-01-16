@@ -17,7 +17,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y php8.1-cli php8.1-common php8.1-amqp php8.1-bcmath php8.1-bz2 php8.1-curl php8.1-gd php8.1-gmp \
        php8.1-igbinary php8.1-imagick php8.1-intl php8.1-mbstring php8.1-mcrypt php8.1-memcached php8.1-mongodb php8.1-msgpack \
-       php8.1-mysql php8.1-psr php8.1-readline php8.1-redis php8.1-soap php8.1-sqlite3 php8.1-ssh2 php8.1-swoole php8.1-tidy \
+       php8.1-mysql php8.1-readline php8.1-redis php8.1-soap php8.1-sqlite3 php8.1-ssh2 php8.1-swoole php8.1-tidy \
        php8.1-xml php8.1-xmlrpc php8.1-xsl php8.1-yaml php8.1-zip php8.1-opcache php8.1-protobuf \
        mysql-client \
     && curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
